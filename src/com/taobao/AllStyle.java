@@ -31,6 +31,22 @@ public class AllStyle extends BasicStyle {
     
     private String layout;
     
+    private int fontWight;
+    
+    /**
+     * @return the fontWight
+     */
+    public int getFontWight() {
+        return fontWight;
+    }
+
+    /**
+     * @param fontWight the fontWight to set
+     */
+    public void setFontWight(int fontWight) {
+        this.fontWight = fontWight;
+    }
+
     /**
      * @return the layout
      */

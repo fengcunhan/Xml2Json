@@ -9,6 +9,8 @@
  */
 package com.taobao;
 
+import java.util.Map;
+
 /**
  *
  * @create 2014年4月15日 上午11:29:35
@@ -24,6 +26,10 @@ public class Data extends TaobaoObject {
     
     private String value;
     private String url;
+    
+    private String apiName;
+    private boolean needLogin;
+    private Map<String,String> param;
     /**
      * @return the value
      */

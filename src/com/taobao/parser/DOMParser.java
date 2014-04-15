@@ -95,12 +95,18 @@ public class DOMParser {
                 if(attrName.equals("android:layout_height")){
                     if(attrValue.equals("match_parent")||attrValue.equals("fill_parent")){
                         style.setHeight(-1);
+                    }else if(attrValue.endsWith("p")){
+                        int value=getSize(attrValue);
+                        style.setHeight(value);
                     }else{
                         style.setHeight(-2);
                     }
                 }else  if(attrName.equals("android:layout_width")){
                     if(attrValue.equals("match_parent")||attrValue.equals("fill_parent")){
                         style.setWidth(-1);
+                    }else if(attrValue.endsWith("p")){
+                        int value=getSize(attrValue);
+                        style.setWidth(value);
                     }else{
                         style.setWidth(-2);
                     }
@@ -112,6 +118,45 @@ public class DOMParser {
                    data.setValue(attrValue);
                 } else if(attrName.equals("android:src")){
                     data.setUrl("http://gtms02.alicdn.com/tps/i2/T14LNLFxxlXXaeHbsb-100-100.png");
+                }else if(attrName.equals("android:layout_marginLeft")){
+                    int value=getSize(attrValue);
+                    style.setMarginLeft(value);
+                }else if(attrName.equals("android:layout_marginRight")){
+                    int value=getSize(attrValue);
+                    style.setMarginRight(value);
+                }else if(attrName.equals("android:layout_marginTop")){
+                    int value=getSize(attrValue);
+                    style.setMarginTop(value);
+                }else if(attrName.equals("android:layout_marginBottom")){
+                    int value=getSize(attrValue);
+                    style.setMarginBottom(value);
+                }else if(attrName.equals("android:layout_margin")){
+                    int value=getSize(attrValue);
+                    style.setMargin(value);
+                }else if(attrName.equals("android:layout_padding")){
+                    int value=getSize(attrValue);
+                    style.setPadding(value);
+                }else if(attrName.equals("android:layout_paddingLeft")){
+                    int value=getSize(attrValue);
+                    style.setPaddingLeft(value);
+                }else if(attrName.equals("android:layout_paddingRight")){
+                    int value=getSize(attrValue);
+                    style.setPaddingRight(value);
+                }else if(attrName.equals("android:layout_paddingTop")){
+                    int value=getSize(attrValue);
+                    style.setPaddingTop(value);
+                }else if(attrName.equals("android:layout_paddingBottom")){
+                    int value=getSize(attrValue);
+                    style.setPaddingBottom(value);
+                }else if(attrName.equals("android:gravity")){
+                    style.setGravity(getGravity(attrValue));
+                }else if(attrName.equals("android:textSize")){
+                    int value=getSize(attrValue);
+                    style.setFontSize(value);
+                }else if(attrName.equals("android:textColor")){
+                   style.setTextColor(attrValue);
+                }else if(attrName.equals("android:textStyle")){
+                    style.setFontStyle(getFontStyle(attrValue));
                 }
             }
         }
@@ -147,6 +192,31 @@ public class DOMParser {
         setView(container);
     }
     
+    public static int getSize(String value){
+        if(value.endsWith("dp")||value.endsWith("sp")||value.endsWith("dip")){
+            value=value.replace("dp", "").replace("sp", "").replace("dip", "");
+        }
+        Integer inte=Integer.parseInt(value);
+        
+        return inte;
+    }
+    public static int getGravity(String grivaty){
+        if(grivaty.equals("center")){
+            return 5;
+        }else if(grivaty.equals("center_vertical")){
+            return 3;
+        }else if(grivaty.equals("center_horizontal")){
+            return 2;
+        }
+        return 1;
+    }
+    
+    public static int getFontStyle(String name){
+        if(name.equals("italic")){
+            return 2;
+        }
+        return 1;
+    }
     public static void println(Object obj){
         SerializeWriter sw=new SerializeWriter();
         JSONSerializer serialize=new JSONSerializer(sw);
