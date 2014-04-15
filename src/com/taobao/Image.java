@@ -17,7 +17,7 @@ package com.taobao;
  */
 public class Image extends View {
     
-    protected ViewType type=ViewType.image;
+    protected ViewType type = ViewType.image;
 
     /**
      * @return the type

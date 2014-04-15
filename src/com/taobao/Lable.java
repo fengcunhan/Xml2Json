@@ -9,7 +9,6 @@
  */
 package com.taobao;
 
-import com.alibaba.fastjson.annotation.JSONField;
 
 
 /**
