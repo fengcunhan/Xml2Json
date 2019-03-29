@@ -16,16 +16,19 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.JSONSerializer;
 import com.alibaba.fastjson.serializer.SerializeWriter;
 import com.taobao.AllStyle;
+import com.taobao.Button;
 import com.taobao.Container;
 import com.taobao.Data;
 import com.taobao.Image;
 import com.taobao.Lable;
 import com.taobao.LinearLayout;
+import com.taobao.ListView;
+import com.taobao.TextField;
 import com.taobao.View;
+import com.taobao.WebView;
 import com.taobao.serial.SimplePropertyFilter;
 
 public class DOMParser {
@@ -69,6 +72,14 @@ public class DOMParser {
         }else if(tagName.equals("LinearLayout")){
             currentView=new LinearLayout();
             style.setLayout("linearLayout");
+        }else if(tagName.equals("Button")){
+        	currentView = new Button();
+        }else if(tagName.equals("EditText")){
+        	currentView = new TextField();
+        }else if(tagName.equals("WebView")){
+        	currentView = new WebView();
+        }else if(tagName.equals("ListView")){
+        	currentView = new ListView();
         }else {
             currentView=new View();
         }
